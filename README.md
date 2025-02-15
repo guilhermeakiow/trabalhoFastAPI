@@ -1,3 +1,5 @@
+## Trabalho da disciplina de API para Pós Graduação em Sistemas e Agentes Inteligentes - Prof. Rogério Rodrigues
+
 ## Orientações para executar a API de Criação de Histórias e extração de sentimentos.
 
 - Crie um ambiente virtual: `python -m venv venv`
