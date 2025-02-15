@@ -1,42 +1,33 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, status, HTTPException, Depends
+from pydantic import BaseModel
+from enum import Enum
+import logging
+from groq import Groq
+
 
 app = FastAPI()
 
 
-@app.get("/teste")
-def hello_world():
-    return {"mensagem": " Hello World"}
+def executar_prompt(tema: str):
+    prompt = f"Escreva uma história sobre o {tema}"
+    client = Groq(
+        api_key="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)",
+    )
+
+    chat_completion = client.chat.completions.create(
+        messages=[
+            {
+                "role": "user",
+                "content": prompt,
+            }
+        ],
+        model="llama-3.1-8b-instant",
+    )
+
+    return chat_completion.choices[0].message.content
 
 
-# Criando um endpoint para receber dois números e retornar a soma:
-
-
-# Passando o número 1 e 2 na URL
-@app.get("/soma/{numero1}/{numero2}")
-def soma(numero1: int, numero2: int):
-    total = numero1 + numero2
-    return {"resultado": total}
-
-
-# Passando o número 1 e 2 no corpo da requisição
-
-
-@app.post("/soma_formato2")
-def soma_formato2(numero1: int, numero2: int):
-    total = numero1 + numero2
-    return {"resultado": total}
-
-
-# Passando o número 1 e 2 no corpo da requisição
-from pydantic import BaseModel
-
-
-class Numeros(BaseModel):
-    numero1: int
-    numero2: int
-
-
-@app.post("/soma_formato3")
-def soma_formato3(numeros: Numeros):
-    total = numeros.numero1 + numeros.numero2
-    return {"resultado": total}
+@app.post("/gerar_historia")
+def gerar_historia(tema: str):
+    historia = executar_prompt(tema)
+    return {"História": historia}
