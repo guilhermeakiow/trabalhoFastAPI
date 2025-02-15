@@ -29,11 +29,11 @@ def executar_prompt(estilo: str, tema: str):
 
 class EstiloHistoria(str, Enum):
     Aventura = "Aventura"
-    Emocionante = "Emocionante"
+    Emocionante = "Guerra"
     Terror = "Terror"
 
 
 @app.post("/v1/criador_de_historias", tags=["Criador de Histórias"])
-def criar_história(estilo: EstiloHistoria, Tema: str):
-    historia = executar_prompt(estilo, Tema)
+def criar_história(Estilo: EstiloHistoria, Tema: str):
+    historia = executar_prompt(Estilo, Tema)
     return {"História": historia}
