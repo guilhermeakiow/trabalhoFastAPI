@@ -8,10 +8,10 @@ from groq import Groq
 app = FastAPI()
 
 
-def executar_prompt(tema: str):
-    prompt = f"Escreva uma história sobre o {tema}"
+def executar_prompt(estilo: str, tema: str):
+    prompt = f"Escreva uma história de {estilo} sobre: {tema}"
     client = Groq(
-        api_key="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)",
+        api_key="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",
     )
 
     chat_completion = client.chat.completions.create(
@@ -27,7 +27,13 @@ def executar_prompt(tema: str):
     return chat_completion.choices[0].message.content
 
 
-@app.post("/gerar_historia")
-def gerar_historia(tema: str):
-    historia = executar_prompt(tema)
+class EstiloHistoria(str, Enum):
+    Aventura = "Aventura"
+    Emocionante = "Emocionante"
+    Terror = "Terror"
+
+
+@app.post("/v1/criador_de_historias", tags=["Criador de Histórias"])
+def criar_história(estilo: EstiloHistoria, Tema: str):
+    historia = executar_prompt(estilo, Tema)
     return {"História": historia}
