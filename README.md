@@ -9,6 +9,6 @@
 - Executar a API em ambiente de desenvolvimento:
 `fastapi dev main.py`
 - Executar a API em ambiente de produção: `fastapi run main.py`
-- Se tiver algum erro no pydantic_core, reinstale de acordo com sua arquitetura.
+- Se tiver algum erro no pydantic_core, reinstale-o de acordo com sua arquitetura.
 - No navegador digitar: `http://127.0.0.1:8000/docs#/` e seguir o passo a passo informado.
 
