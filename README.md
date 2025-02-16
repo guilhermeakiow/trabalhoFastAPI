@@ -10,7 +10,7 @@
 `fastapi dev main.py`
 - Executar a API em ambiente de produção: `fastapi run main.py`
 - Se tiver algum erro no pydantic_core, reinstale-o de acordo com sua arquitetura.
-    -Comando para reinstalação: `pip uninstall pydantic_core`
+    - Comando para reinstalação: `pip uninstall pydantic_core`
                    `pip install --no-cache-dir --force-reinstall pydantic`
 - No navegador digitar: `http://127.0.0.1:8000/docs#/` e seguir o passo a passo informado.
 
