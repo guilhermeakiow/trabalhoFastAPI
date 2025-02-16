@@ -49,7 +49,7 @@ def executar_prompt_historia(estilo: str, tema: str):
                 "content": prompt,
             }
         ],
-        model="llama-3.1-8b-instant",  # Define o modelo de IA utilizado
+        model="llama-3.3-70b-versatile",  # Define o modelo de IA utilizado
     )
 
     return chat_completion.choices[0].message.content  # Retorna o conteúdo gerado
